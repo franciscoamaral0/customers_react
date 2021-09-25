@@ -4,7 +4,9 @@ import { Header } from './partials/Header/Header'
 
 const Home = props => {
     return (
-       <Header/>
+       <>
+       <h1>Home</h1>
+       </>
     )
 }
 
