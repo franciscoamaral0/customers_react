@@ -5,7 +5,7 @@ import { Header } from '../partials/Header/Header'
 const Home = props => {
     return (
        <>
-       <h1>Home</h1>
+      
        </>
     )
 }
