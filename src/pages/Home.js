@@ -1,5 +1,5 @@
 import React from 'react'
-import { Header } from './partials/Header/Header'
+import { Header } from '../partials/Header/Header'
 
 
 const Home = props => {
@@ -10,8 +10,6 @@ const Home = props => {
     )
 }
 
-Home.propTypes = {
 
-}
 
 export default Home
