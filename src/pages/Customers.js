@@ -37,8 +37,8 @@ const Customers = (props) => {
   }, []);
 
   const handleRemoveCustomer = async id =>{
-    const deletedUser = await axios.delete(`https://reqres.in/api/users/${id}`)
-    console.log(deletedUser)
+    await axios.delete(`https://reqres.in/api/users/${id}`)
+    
     const deleted = customers.filter(element => element.id !== id)
     setCustomers(deleted)
   }
