@@ -1,15 +1,8 @@
-import React from 'react'
-import { Header } from '../partials/Header/Header'
+import React from "react";
+import { Header } from "../partials/Header/Header";
 
+const Home = (props) => {
+  return <></>;
+};
 
-const Home = props => {
-    return (
-       <>
-      
-       </>
-    )
-}
-
-
-
-export default Home
+export default Home;

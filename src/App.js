@@ -1,33 +1,25 @@
-import { 
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-import Home from './pages/Home';
-import Customers from './pages/Customers';
-import TemplateDefault from './templates/Default'
-import TemplatePage from './templates/Page'
-
-
+import Home from "./pages/Home";
+import Customers from "./pages/Customers";
+import TemplateDefault from "./templates/Default";
+import TemplatePage from "./templates/Page";
 
 const App = () => {
   return (
-    <TemplateDefault>
-      <Router>
+    <Router>
+      <TemplateDefault>
         <Switch>
-          <Route path ='/customers'>
-            <TemplatePage title='Clientes' Component={Customers}/>
+          <Route path="/customers">
+            <TemplatePage title="Clientes" Component={Customers} />
           </Route>
-          <Route path ='/'>
-            <TemplatePage title='Home' Component={Home}/>
+          <Route path="/">
+            <TemplatePage title="Home" Component={Home} />
           </Route>
         </Switch>
-      </Router>
-    </TemplateDefault>
+      </TemplateDefault>
+    </Router>
   );
-}
-
-
+};
 
 export default App;
