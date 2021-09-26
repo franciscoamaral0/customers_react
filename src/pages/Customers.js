@@ -19,22 +19,38 @@ const Customers = (props) => {
   const classes = useStyles();
 
   const pickData = async () => {
-    const { data } = await (
+    const { data } = (
       await axios.get("https://reqres.in/api/users")
     ).data;
     setCustomers(data);
   };
 
+  const deleteData = async (id) => {
+    const {data} = (
+      await axios.delete(`https://reqres.in/api/users/${id}`).data
+    )
+    setCustomers(data)
+  }
+
   useEffect(() => {
     pickData();
   }, []);
+
+  const handleRemoveCustomer = async id =>{
+    const deletedUser = await axios.delete(`https://reqres.in/api/users/${id}`)
+    console.log(deletedUser)
+    const deleted = customers.filter(element => element.id !== id)
+    setCustomers(deleted)
+  }
+
+  
 
   return (
     <>
       <Grid container>
         {customers.map((customer) => (
           <Grid item xs={12} md={6}>
-            <CustomerCard {...customer} className={classes.card} />
+            <CustomerCard {...customer} id ={customer.id} className={classes.card} onRemoveCustomer={handleRemoveCustomer} />
           </Grid>
         ))}
       </Grid>
