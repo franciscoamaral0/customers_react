@@ -16,7 +16,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import {makeStyles}  from "@material-ui/core/styles/";
 import Delete from "@material-ui/icons/Delete";
 import ModalConfig from "./ModalConfirm";
-
+import PersonAdd  from "@material-ui/icons/PersonAdd";
 
 
 
@@ -59,6 +59,7 @@ const CustomerCard = ({ id, first_name, last_name, email, avatar, className, onR
         <IconButton aria-label="Delete customer" onClick={() => handleRemoveCustomer()}>
           <DeleteIcon />
         </IconButton>
+        
       </CardActions>
     </Card>
     <ModalConfig 
