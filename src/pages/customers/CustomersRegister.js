@@ -1,9 +1,11 @@
 
 import { useState } from "react"
-import { TextField, Button, formatMs } from "@material-ui/core"
+import { TextField, Button } from "@material-ui/core"
 import { makeStyles } from "@material-ui/core"
 import axios from "axios"
 
+
+import Toasty from '../../components/Toasty'
 const useStyles = makeStyles((theme) =>({
   wrapper:{
     margin: theme.spacing(4)
@@ -13,7 +15,7 @@ const useStyles = makeStyles((theme) =>({
 
 const CustomersRegister = () => {
   
-  const [useForm, setUseForm] = useState({
+const [useForm, setUseForm] = useState({
     name: {
       value:'',
       error: false, 
@@ -24,12 +26,37 @@ const CustomersRegister = () => {
     }
   })
 
-  const postNewUser = async () =>{
+const [openToasty, setOpenToasty] = useState({
+  open: false,
+  message: '',
+  severity: ''
+
+})
+
+// const toastyStatus ={
+//   error:
+// }
+// const errorToasty = () =>{
+//   setOpenToasty({
+//     open: false,
+//     message: 'Register Fail',
+//     severity: 'error'
+//   })
+// }
+
+const postNewUser = async () =>{
     const sendData = await axios.post('https://reqres.in/api/users', {
       name: useForm.name.value,
       job: useForm.job.value
     })
     console.log(sendData)
+    
+    setOpenToasty({
+      open: true,
+      message: 'success',
+      severity: 'success'
+    })
+  
   }
 
 const handleForm = (e) => {
@@ -41,7 +68,7 @@ const handleForm = (e) => {
     },
 
   })
-}
+  }
 
 const handleRegisterButton = () => {
   let newFormState = {
@@ -55,6 +82,7 @@ const handleRegisterButton = () => {
       error: true,
       helperText: 'enter the name correctly'
     }
+    
   }
   if(!useForm.job.value) {
     hasError = true
@@ -65,10 +93,14 @@ const handleRegisterButton = () => {
 
     }
   }
+  
   if(hasError){
-   return setUseForm(newFormState)
+    
+  return setUseForm(newFormState)
+  
   }
-
+  
+  
   postNewUser()
 }
 
@@ -84,7 +116,7 @@ const handleRegisterButton = () => {
     <div className={classes.wrapper}>
     <Button variant='contained' color='primary' onClick={handleRegisterButton}>Confirm Register</Button>
     </div>
-
+    <Toasty open={openToasty.open} severity={openToasty.severity} text={openToasty.message} onClose={() => setOpenToasty({open: false})}/>
     </>
   )
 }
